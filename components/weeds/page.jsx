@@ -3,7 +3,7 @@ import ProductGrid from "../ProductGrid/page";
 
 export default function Weed() {
   return (
-    <section className=" bg-white py-10">
+    <section className=" bg-white py-10 pb-70">
       <div className="max-w-7xl mx-auto px-4">
       <h2 className="text-[60px] text-[#1A1E26] font-semibold text-center ">
           CHOOSE YOUR WEED

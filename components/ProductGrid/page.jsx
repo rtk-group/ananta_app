@@ -29,7 +29,7 @@ export default function ProductGrid() {
           {/* best seller card */}
           <div className=" bg-[#05422C] min-w-[379px] h-full flex flex-col items-center justify-center gap-5 rounded-3xl overflow-hidden">
             <div className="w-[213px] h-[213px] relative">
-            <Image src={'/images/bestSeller_img.png'} fill className="object-cover z-4" />
+            <Image src={'/images/bestSeller_img.png'} fill className="object-cover z-4" alt="image" />
             <div className=" h-[371px] w-[261px] absolute left-20 bottom-5 rotate-5 bg-[#34665466]/40"> </div>
             </div>
 
