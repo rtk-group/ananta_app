@@ -37,10 +37,6 @@ export default function HowItWorks() {
    const referRef = useRef(null);
    const headingRef = useRef(null);
 
-
-
-
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
