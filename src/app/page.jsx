@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import Header from "../../components/Navbar/page";
+import IntroducePage from "../../components/introduceUs/page"
 import Hero from "../../components/Hero/page";
 import ProductGrid from "../../components/ProductGrid/page";
 import Weed from "../../components/weeds/page";
@@ -65,7 +66,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <div className=" border border-red-500 bg-[#F2F6F4] h-auto md:h-[356px] flex flex-col md:flex-row  items-center justify-center gap-10">
+        <div className="bg-[#F2F6F4] h-auto md:h-[356px] flex flex-col md:flex-row  items-center justify-center gap-10">
           {
             aboutIns.map((item, index) => (
               <div key={index} className="about-card min-h-[172px] w-[429px] flex">
@@ -83,6 +84,7 @@ export default function Home() {
         <ProductGrid />
         <Weed />
         <HowItWorks />
+        <IntroducePage />
       </main>
       <Footer />
     </>
