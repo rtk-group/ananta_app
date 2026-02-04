@@ -34,10 +34,10 @@ export default function ProductGrid() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-[60px] text-[#1A1E26] -mb-5 font-semibold text-center ">
+        <h2 className="text-[32px] sm:text-[64px] text-[#1A1E26] sm:-mb-5 font-semibold text-center ">
           BEST DISPENSARY TO BUY
         </h2>
-        <h2 className="text-[64px] text-[#1A1E26]  font-semibold text-center ">
+        <h2 className="text-[32px] sm:text-[64px] text-[#1A1E26]  font-semibold text-center ">
           WEED ONLINE IN INDIA
         </h2>
 
@@ -49,7 +49,7 @@ export default function ProductGrid() {
         </div>
 
 
-        <div className=" h-[568px] w-full mt-10 flex">
+        <div className=" h-[568px] w-full mt-10 flex ">
           {/* best seller card */}
           <div ref={sellerCard} className=" bg-[#05422C] min-w-[379px] h-full flex flex-col items-center justify-center gap-5 rounded-3xl overflow-hidden">
             <div className="w-[213px] h-[213px] relative">

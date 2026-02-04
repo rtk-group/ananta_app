@@ -37,24 +37,25 @@ export default function Header() {
   return (
     <header className=" bg-white shadow-sm sticky top-0 z-50 relative">
       <div className=" bg-[#05422C] h-[37px] flex items-center justify-center gap-5">
-        <span className="text-[14px] text-[#FFFFFFB2] font-normal tracking-wider"> LIMITED OFFER: 30% OFF. Use ANANTA30 at Checkout. </span>
-        <span>23 : 15 : 00</span>
+        <span className="text-[12px] md:text-[14px] text-[#FFFFFFB2] font-normal tracking-wider"> LIMITED OFFER: 30% OFF. Use ANANTA30 at Checkout. </span>
+        <span className="text-[12px] md:text-[14px]">23 : 15 : 00</span>
       </div>
 
-      <div className="flex items-center justify-between mx-auto px-4 h-[90px]">
+      <div className=" h-auto sm:h-[90px] flex gap-3 flex-col md:flex-row items-center justify-between mx-auto px-4 ">
 
-        <div className="relative w-[167px] h-[62px]">
-          <button className="lg:hidden" onClick={() => setOpen(!open)} > ☰ </button>
+        <div className="relative w-full sm:w-auto flex">
+          <button className="sm:hidden text-[28px] text-black ml-8 mr-4 sm:ml-0 mr-0" onClick={() => setOpen(!open)} > ☰ </button>
           <Image src={'/images/ananta_logo2.png'}
             alt="ananta_logo"
-            fill
+            width={167}
+            height={62}
             className="object-fill"
           />
         </div>
         <div className=" flex items-center gap-10 ">
 
           {/* un order list part */}
-          <nav className="relative w-full h-[40px] flex items-center gap-5 text-[16px] text-[#46494F]">
+          <nav className="relative w-full h-[40px] hidden md:flex items-center gap-5 text-[16px] text-[#46494F]">
             {navItems.map((item, index) => (
               <div
                 key={item.name}
@@ -91,7 +92,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="min-w-[456px] h-[48px] flex gap-3 ">
+          <div className="min-w-[456px] my-4 sm:my-0 h-[48px] flex gap-3 ">
             <input type="text" placeholder="Search" className=" border border-gray-300 text-gray-500 h-full w-full rounded-full pl-5" />
             <span className=" w-[55px] text-xl rounded-full flex items-center justify-center bg-[#17AF26]"> <CiSearch /> </span>
           </div>

@@ -66,7 +66,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <div className="bg-[#F2F6F4] h-auto md:h-[356px] flex flex-col md:flex-row  items-center justify-center gap-10">
+        <div className="bg-[#F2F6F4] h-auto md:h-[356px] py-15 sm:py-0 flex flex-col md:flex-row  items-center justify-center gap-10">
           {
             aboutIns.map((item, index) => (
               <div key={index} className="about-card min-h-[172px] w-[429px] flex">
