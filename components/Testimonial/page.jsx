@@ -7,26 +7,27 @@ import { FaStar } from "react-icons/fa";
 const products = [
   {
     name: 'rohit kumar',
-    description: 'hello world',
+    description: 'Absolutely love TopShelfBC; affordable on any budget and such fast delivery, straight to my door! I recommend them to all my friends and family for their 420 needs.',
     date: 'january 15 2025'
   },
   {
     name: 'rohit kumar',
-    description: 'hello world',
+    description: 'Absolutely love TopShelfBC; affordable on any budget and such fast delivery, straight to my door! I recommend them to all my friends and family for their 420 needs.',
     date: 'january 15 2025'
   },
   {
     name: 'rohit kumar',
-    description: 'hello world',
+    description: 'Absolutely love TopShelfBC; affordable on any budget and such fast delivery, straight to my door! I recommend them to all my friends and family for their 420 needs.',
     date: 'january 15 2025'
   },
-  
+
 ];
 
 export default function TestimonialCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    dragFree: true,
+    loop: true,
+    dragFree: false,
   });
 
   return (
@@ -48,35 +49,31 @@ export default function TestimonialCarousel() {
       </button>
 
       {/* Carousel */}
-      <div ref={emblaRef} className=" grid grid-cols md:grid-cols-3 lg:grid-cols-4 overflow-hidden ">
+      <div ref={emblaRef} className="w-full overflow-hidden ">
         <div className="flex gap-6 ">
 
           {products.map((product, index) => (
             <div
               key={index}
-              className=" min-w-[379px] h-[424px] bg-white flex flex-col items-center border border-gray-200 rounded-xl p-10"
+              className="flex-shrink-0 pl-6 flex flex-col items-center max-w-[379px] h-[424px] bg-white border border-gray-200 rounded-xl p-10"
             >
-
-                <div className="flex w-full items-center">
-                    {/* add images hare */}
-                    <div className=" h-[36px] w-[36px] rounded-full bg-red-300"></div>
-                    <p className="text-[#1A1E26] text-[16px] ml-4">Rohit kumar</p>
-                </div>
-
-                <div className="border w-full border-[#C8C9CB] my-8"></div>
-
-                <div className="flex gap-1 w-full text-xl text-yellow-500">
-                    <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
-                </div>
-
-                <p className="text-[16px] text-[#1A1E26] tracking-wider my-5">
-                    Absolutely love TopShelfBC; affordable on any budget and such fast delivery, straight to my door! I recommend them to all my friends and family for their 420 needs.
-                </p>
-
-                <p className="text-[14px] text-[#9D9EA2] w-full mt-10">january 15, 2025</p>
-
-
+              <div className="flex w-full items-center">
+                {/* add images hare */}
+                <div className=" h-[36px] w-[36px] rounded-full bg-red-300"></div>
+                <p className="text-[#1A1E26] text-[16px] ml-4">{product.name}</p>
               </div>
+
+              <div className="border w-full border-[#C8C9CB] my-8"></div>
+
+              <div className="flex gap-1 w-full text-xl text-yellow-500">
+                <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
+              </div>
+
+              <p className="text-[16px] text-[#1A1E26] tracking-wider my-5">
+                {product.description}
+              </p>
+              <p className="text-[14px] text-[#9D9EA2] w-full mt-10">{product.date}</p>
+            </div>
           ))}
 
         </div>

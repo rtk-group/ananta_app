@@ -4,6 +4,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useRef, useEffect } from "react";
 
+
 export default function Hero() {
 
   const headingRef = useRef(null);

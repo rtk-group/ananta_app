@@ -1,11 +1,35 @@
 "use client"
 import Image from "next/image";
+import gsap from "gsap";
 
 import ProductCarousel from "../Carousel/page";
+import { useRef, useEffect } from "react";
 import { FaStar } from "react-icons/fa6";
 import TestimonialCarousel from "../Testimonial/page";
 
 export default function ProductGrid() {
+
+  const sellerCard = useRef(null);
+  const testimonialCard = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sellerCard.current,
+        { y: 30, opacity:0},
+        {
+          y: 0,
+          delay: 0.3,
+          duration: 1.5,
+          opacity: 1,
+          ease: "power2.out",
+          scrollTrigger: sellerCard.current
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="py-20 bg-white">
@@ -27,10 +51,10 @@ export default function ProductGrid() {
 
         <div className=" h-[568px] w-full mt-10 flex">
           {/* best seller card */}
-          <div className=" bg-[#05422C] min-w-[379px] h-full flex flex-col items-center justify-center gap-5 rounded-3xl overflow-hidden">
+          <div ref={sellerCard} className=" bg-[#05422C] min-w-[379px] h-full flex flex-col items-center justify-center gap-5 rounded-3xl overflow-hidden">
             <div className="w-[213px] h-[213px] relative">
-            <Image src={'/images/bestSeller_img.png'} fill className="object-cover z-4" alt="image" />
-            <div className=" h-[371px] w-[261px] absolute left-20 bottom-5 rotate-5 bg-[#34665466]/40"> </div>
+              <Image src={'/images/bestSeller_img.png'} fill className="object-cover z-4" alt="image" />
+              <div className=" h-[371px] w-[261px] absolute left-20 bottom-5 rotate-5 bg-[#34665466]/40"> </div>
             </div>
 
             <div className=" w-full text-center">
@@ -39,46 +63,59 @@ export default function ProductGrid() {
               <button className="text-[#17AF26] text-[14px] tracking-wider mt-1"> View All </button>
             </div>
           </div>
-          <ProductCarousel /> 
+          <div className="flex-1 min-w-0 relative">
+            <ProductCarousel />
+          </div>
         </div>
-        
 
-{/* customer testimonial */}
-          <div className="mt-25">
-            <h2 className="text-[60px] text-[#1A1E26] my-10 font-semibold ">
-          CUSTOMER TESTIMONIALS
-        </h2>
 
-        <div className=" flex">
-          <div className="border border-red-500 min-w-[379px] p-10 h-[424px] bg-[#05422C] rounded-xl">
-            <h1 className="text-[32px] font-semibold text-white">VOTED BEST <br/> ONLINE DISPENSARY IN INDIA</h1>
-            <div className="border border-[#346654] mt-5 rounded-full"></div>
-            <p className="text-[#346654] text-[30px] my-3 font-semibold">Google</p>
-            <p className="text-[16px] my-2">EXELLENCET</p>
+        {/* customer testimonial */}
 
-            <div className=" text-yellow-500 text-[20px] flex">
-              <div className=" flex gap-1">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
+        <div className="mt-25">
+          <h2 className="text-[60px] text-[#1A1E26] my-10 font-semibold">
+            CUSTOMER TESTIMONIALS
+          </h2>
+
+          <div className="flex gap-6 w-full">
+
+            {/* Left static card */}
+            <div ref={testimonialCard} className="flex-none w-[379px] max-w-[379px] p-10 h-[424px] bg-[#05422C] rounded-xl">
+              <h1 className="text-[32px] font-semibold text-white">
+                VOTED BEST <br /> ONLINE DISPENSARY IN INDIA
+              </h1>
+
+              <div className="border border-[#346654] mt-5 rounded-full"></div>
+
+              <p className="text-[#346654] text-[30px] my-3 font-semibold">
+                Google
+              </p>
+
+              <p className="text-[16px] my-2 text-white">EXCELLENT</p>
+
+              <div className="text-yellow-500 text-[20px] flex items-center">
+                <div className="flex gap-1">
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                </div>
+
+                <div className="border border-[#346654] h-5 mx-6"></div>
+
+                <p className="text-white text-[16px]">
+                  on 135 Reviews
+                </p>
               </div>
-              <div className="border border-[#346654] h-5 mx-6"></div>
-              <p className="text-white text-[16px]">on 135 Reviews</p>
+            </div>
+
+            {/* Right carousel */}
+            <div className="flex-1 min-w-0 relative">
+              <TestimonialCarousel />
             </div>
 
           </div>
-
-          <TestimonialCarousel />
         </div>
-
-
-
-          </div>
-
-
-        
       </div>
     </section>
   );

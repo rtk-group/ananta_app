@@ -40,16 +40,26 @@ const products = [
     price: "$60 ounce",
     status: "available",
   },
+  {
+    category: "FLOWER",
+    title: "2 Oz Deal Ahi Tuna + Master Tuna",
+    rating: 4.6,
+    reviews: 135,
+    type: "",
+    price: "$60 ounce",
+    status: "available",
+  },
 ];
 
 export default function ProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    dragFree: true,
+    loop: true,
+    dragFree: false,
   });
 
   return (
-    <section className="relative px-6 ">
+    <section className="relative px-6">
 
       {/* Arrows */}
       <button
@@ -67,23 +77,23 @@ export default function ProductCarousel() {
       </button>
 
       {/* Carousel */}
-      <div ref={emblaRef} className=" grid grid-cols md:grid-cols-3 lg:grid-cols-4 overflow-hidden ">
-        <div className="flex gap-6">
+      <div ref={emblaRef} className="w-full overflow-hidden ">
+        <div className="flex gap-6 ">
 
           {products.map((product, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[280px] bg-white flex flex-col items-center"
+              className="flex-shrink-0 w-[285px] bg-white px-2"
             >
               {/* image */}
               <div className="relative w-full h-[240px] rounded-xl overflow-hidden">
-                  <Image
-                    src={'/images/product1_img.png'}
-                    alt={'image'}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <Image
+                  src={'/images/product1_img.png'}
+                  alt={'image'}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
               {/* Status */}
               {/* {product.status === "out" && (
@@ -117,8 +127,8 @@ export default function ProductCarousel() {
               )}
 
               <div className="border w-[104px] h-[24px] flex">
-                  <p className="text-[16px] text-[#EB2606]">$ 80.00</p>
-                  <p className="text-14px text-[#C8C9CB]">/ gram</p>
+                <p className="text-[16px] text-[#EB2606]">$ 80.00</p>
+                <p className="text-14px text-[#C8C9CB]">/ gram</p>
               </div>
 
               {/* Sizes */}
