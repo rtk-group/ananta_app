@@ -3,7 +3,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 
-
 const products = [
   {
     name: 'rohit kumar',

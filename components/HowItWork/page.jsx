@@ -1,9 +1,7 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const instruct = [
   {
@@ -33,156 +31,184 @@ const instruct = [
 ];
 
 export default function HowItWorks() {
-
-   const referRef = useRef(null);
-   const headingRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        referRef.current,
-        {scale: 0,
-          opacity:0
-        },
-        {
-          duration: 1,
-          scale:1,
-          opacity:1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: referRef.current,
-            start: "top 100%",
-            end: "top 50%",
-            scrub: true,   
-          },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, []);
-
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headingRef.current,
-        { y: 30, opacity:0},
-        {
-          y: 0,
-          delay: 0.3,
-          duration: 1.5,
-          opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: headingRef.current
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, []);
-
-
-
-  useEffect(() => {
-  const ctx = gsap.context(() => {
-
-    gsap.fromTo(
-      gsap.utils.toArray(".instruction-card"),
-      {
-        opacity: 0,
-        y: 30,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.3, 
-        scrollTrigger: {
-          trigger: ".instruction-card",
-          start: "top 80%",
-        },
-      }
-    );
-  });
-
-  return () => ctx.revert();
-}, []);
-
   return (
-    <section className=" bg-[#01100B] text-white py-23 relative">
-      <div ref={headingRef} className="mt-45">
-        <h1 className="text-[64px] font-semibold leading-20 tracking-wider max-w-[974px] mx-auto text-center">HOW TO ORDER WEED ONLINE FROM TOP SHELF BC - MAIL ORDER ANANTA</h1>
-        <p className="text-[16px] text-[#9D9EA2] max-w-[811px] mx-auto text-center tracking-wide mt-5 ">Ordering weed online from Top Shelf BC is easy. We are proud to have made the process accessible across multiple platforms and simple to understand, meaning that more people can come to us to buy their cannabis products online.</p>
-      </div>
+    <section className="bg-[#01100B] text-white py-12 sm:py-16 md:py-20 lg:py-23 relative ">
+      {/* Referral Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, type: "spring" }}
+        viewport={{ once: true }}
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl px-4 "
+      >
+        <div className="relative h-[200px] sm:h-[250px] md:h-[300px] lg:h-[342px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={'/images/mark_img.jpg'}
+            fill
+            className="object-cover"
+            alt="Refer a friend banner"
+            sizes="(max-width: 768px) 100vw, 80vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40" />
 
-      <div className="mt-18 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {instruct.map((item, index) => (
-            <div 
-              key={item.id} 
-              className="instruction-card flex flex-col items-center text-center mx-auto w-[563px] p-4 md:p-6 group hover:transform hover:scale-105 transition-transform duration-300"
+          <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 md:p-10 lg:p-12">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-center sm:text-left mb-6 sm:mb-0"
             >
-              {/* Number Badge */}
-                <div className="w-[144px] h-[144px] mx-auto relative">
-                  <Image 
-                    src={item.icon} 
-                    fill 
-                    className="object-contain" 
-                    alt={`${item.heading} icon`}
-                    sizes="(max-width: 768px) 80px, 96px"
-                  />
-                  <span className=" absolute top-0 -left-25 w-[40px] h-[40px] bg-[#F2BC1B] flex items-center justify-center text-white rounded-full text-lg md:text-xl font-bold shadow-lg">
-                  {index + 1}
-                </span>
-                </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold tracking-wide leading-tight mb-2 sm:mb-4">
+                REFER A FRIEND
+              </h1>
+              <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-4">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-[32px] text-white">And get</p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-[32px] text-[#F2BC1B] font-bold">$30!</p>
+              </div>
+            </motion.div>
 
-
-              {/* Content */}
-              <h3 className="text-xl md:text-[24px] text-white my-5 font-semibold mb-4 tracking-wide">
-                {item.heading}
-              </h3>
-              <p className="text-[#9D9EA2] tracking-wide text-[16px] max-w-xs mx-auto">
-                {item.description}
-              </p>
-            
-            </div>
-          ))}
-        </div>
-        <button className="w-[267px] h-[64px] text-white bg-[#17AF26] rounded-full flex items-center justify-center mx-auto text-[16px] mt-25 hover:bg-green-700 cursor-pointer ">Choose your Weed</button>
-      </div>
-
-
-
-
-            
-
-          <div
-          ref={referRef}
-           className=" flex justify-center h-[342px] absolute -top-[171px] w-full ">
-
-            <div className="h-[342px] relative w-6xl rounded-3xl overflow-hidden">
-
-              <Image src={'/images/mark_img.jpg'} fill className="object-cover" alt="image" sizes="(max-width: 768px) 80px, 96px" />
-            <div className="absolute w-full flex items-center justify-around h-full ">
-            <div className=" flex flex-col items-center justify-center gap-5">
-              <h1 className="text-[64px] tracking-wider font-semibold">REFER A FRIENDS</h1>
-              <span className="flex gap-4">
-                <p className="text-[32px] text-white">And get</p>
-                <p className="text-[32px] text-[#F2BC1B] font-semibold ">$30!</p>
-              </span>
-            </div>
-            <div className=" flex items-center  justify-center">
-                <button className="w-[207px] h-[64px] bg-[#17AF26] text-[18px] text-white flex items-center justify-center rounded-full ">Refer Here</button>
-            </div>
-            </div>
-
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.5, type: "spring" }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <button className="bg-[#17AF26] text-white text-sm sm:text-base md:text-lg lg:text-[18px] font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full hover:bg-green-600 transition-colors duration-300 shadow-lg hover:shadow-xl min-w-[160px] sm:min-w-[207px]">
+                Refer Here
+              </button>
+            </motion.div>
           </div>
+        </div>
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="pt-[150px] sm:pt-[180px] md:pt-[200px] lg:pt-[250px] pb-8 sm:pb-12 md:pb-16 lg:pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-10 sm:mb-12 md:mb-16"
+          >
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-bold leading-tight text-center mb-4 sm:mb-6">
+              HOW TO ORDER WEED ONLINE FROM TOP SHELF BC - MAIL ORDER ANANTA
+            </h1>
+            <p className="text-gray-400 text-sm sm:text-base md:text-[16px] text-center max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
+              Ordering weed online from Top Shelf BC is easy. We are proud to have made the process accessible across multiple platforms and simple to understand, meaning that more people can come to us to buy their cannabis products online.
+            </p>
+          </motion.div>
+
+          {/* Instruction Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {instruct.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                whileHover={{
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+                className="group"
+              >
+                <div className="bg-[#0a1a14] rounded-xl sm:rounded-2xl p-6 sm:p-8 h-full flex flex-col items-center text-center hover:bg-[#0f241b] transition-colors duration-300 shadow-lg hover:shadow-xl">
+                  {/* Icon Container with Number */}
+                  <div className="relative mb-4 sm:mb-6">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.2 + 0.3,
+                        type: "spring"
+                      }}
+                      viewport={{ once: true }}
+                      className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 relative"
+                    >
+                      <Image
+                        src={item.icon}
+                        fill
+                        className="object-contain"
+                        alt={`${item.heading} icon`}
+                        sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 144px"
+                      />
+                    </motion.div>
+
+                    {/* Number Badge */}
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.2 + 0.4,
+                        type: "spring"
+                      }}
+                      viewport={{ once: true }}
+                      className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-8 h-8 sm:w-10 sm:h-10 bg-[#F2BC1B] flex items-center justify-center rounded-full shadow-lg"
+                    >
+                      <span className="text-white text-sm sm:text-base font-bold">
+                        {index + 1}
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  {/* Content */}
+                  <motion.h3
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.2 + 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4"
+                  >
+                    {item.heading}
+                  </motion.h3>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.2 + 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-gray-400 text-sm sm:text-base leading-relaxed flex-1"
+                  >
+                    {item.description}
+                  </motion.p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="mt-10 sm:mt-12 md:mt-16 text-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#17AF26] text-white text-sm sm:text-base md:text-[16px] font-semibold px-8 sm:px-10 md:px-12 py-3 sm:py-4 rounded-full hover:bg-green-600 transition-colors duration-300 shadow-lg hover:shadow-xl min-w-[200px] sm:min-w-[267px]"
+            >
+              Choose your Weed
+            </motion.button>
+          </motion.div>
+        </div>
+      </div>
     </section>
-   );
- }
-
-
+  );
+}
 
